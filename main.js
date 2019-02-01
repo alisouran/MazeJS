@@ -30,101 +30,138 @@ function gameMapInputer(){
 }
 
 
+var counter = 0;
 
 function moveUpEvent(){
-  var width = [];
-  var map = [];
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
+  if (counter < parseInt(random)){
+    var width = [];
+    var map = [];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
-          var textByLine = this.responseText.split("\n");
-          for(var i = 0; i<textByLine.length; i++){
-              width = Array.from(textByLine[i]);
-              map[i] = width;
-              for(var j = 0; j<width.length;j++){
-                  map[i][j] = parseInt(map[i][j])
-              }
+        var textByLine = this.responseText.split("\n");
+        for(var i = 0; i<textByLine.length; i++){
+          width = Array.from(textByLine[i]);
+          map[i] = width;
+          for(var j = 0; j<width.length;j++){
+            map[i][j] = parseInt(map[i][j])
           }
-          var player1 = new Player(map);
-          player1.moveup();
-          // moveup(map);
-
+        }
+        var player1 = new Player(map);
+        player1.moveup();
       }
+    }
+    xhttp.open("GET", "input.txt", true);
+    xhttp.send();
+    counter+=1;
   }
-  xhttp.open("GET", "input.txt", true);
-  xhttp.send();
+  else {
+    DG("upBtn").disabled = true;
+    alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+  }
 }
 
 function moveRightEvent(){
+if (counter < parseInt(random)){
   var width = [];
   var map = [];
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
-      if (this.readyState == 4 && this.status == 200){
-          var textByLine = this.responseText.split("\n");
-          for(var i = 0; i<textByLine.length; i++){
-              width = Array.from(textByLine[i]);
-              map[i] = width;
-              for(var j = 0; j<width.length;j++){
-                  map[i][j] = parseInt(map[i][j])
-              }
-          }
-          var player1 = new Player(map);
-          player1.moveright();
-          // moveright(map);
-
+    if (this.readyState == 4 && this.status == 200){
+      var textByLine = this.responseText.split("\n");
+      for(var i = 0; i<textByLine.length; i++){
+        width = Array.from(textByLine[i]);
+        map[i] = width;
+        for(var j = 0; j<width.length;j++){
+          map[i][j] = parseInt(map[i][j])
+        }
       }
+      var player1 = new Player(map);
+      player1.moveright();
+    }
   }
   xhttp.open("GET", "input.txt", true);
   xhttp.send();
+  counter+=1;
+}
+else {
+  DG("rightBtn").disabled = true;
+  alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+}
 }
 
 function moveLeftEvent(){
-  var width = [];
-  var map = [];
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
+  if (counter < parseInt(random)){
+    var width = [];
+    var map = [];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
-          var textByLine = this.responseText.split("\n");
-          for(var i = 0; i<textByLine.length; i++){
-              width = Array.from(textByLine[i]);
-              map[i] = width;
-              for(var j = 0; j<width.length;j++){
-                  map[i][j] = parseInt(map[i][j])
-              }
+        var textByLine = this.responseText.split("\n");
+        for(var i = 0; i<textByLine.length; i++){
+          width = Array.from(textByLine[i]);
+          map[i] = width;
+          for(var j = 0; j<width.length;j++){
+            map[i][j] = parseInt(map[i][j])
           }
-          var player1 = new Player(map);
-          player1.moveleft();
-          // moveleft(map);
+        }
+        var player1 = new Player(map);
+        player1.moveleft();
+        // moveleft(map);
 
       }
+    }
+    xhttp.open("GET", "input.txt", true);
+    xhttp.send();
+    counter+=1;
   }
-  xhttp.open("GET", "input.txt", true);
-  xhttp.send();
+  else {
+    DG("leftBtn").disabled = true;
+    alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+  }
 }
 
 function moveDownEvent(){
-  var width = [];
-  var map = [];
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
+  if (counter < parseInt(random)){
+    var width = [];
+    var map = [];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
-          var textByLine = this.responseText.split("\n");
-          for(var i = 0; i<textByLine.length; i++){
-              width = Array.from(textByLine[i]);
-              map[i] = width;
-              for(var j = 0; j<width.length;j++){
-                  map[i][j] = parseInt(map[i][j])
-              }
+        var textByLine = this.responseText.split("\n");
+        for(var i = 0; i<textByLine.length; i++){
+          width = Array.from(textByLine[i]);
+          map[i] = width;
+          for(var j = 0; j<width.length;j++){
+            map[i][j] = parseInt(map[i][j])
           }
-          var player1 = new Player(map);
-          player1.movedown();
-          // movedown(map);
+        }
+        var player1 = new Player(map);
+        player1.movedown();
+        // movedown(map);
 
       }
+    }
+    xhttp.open("GET", "input.txt", true);
+    xhttp.send();
+    counter+=1;
   }
-  xhttp.open("GET", "input.txt", true);
-  xhttp.send();
+  else {
+    DG("downBtn").disabled = true;
+    alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+  }
+}
+
+function tasRandom(){
+  DG("upBtn").disabled = false;
+  DG("leftBtn").disabled = false;
+  DG("rightBtn").disabled = false;
+  DG("downBtn").disabled = false;
+  counter = 0;
+  var min = 1;
+  var max = 7;
+  random = Math.random() * (+max - +min) + +min;
+  alert(parseInt(random)+"آوردی :D")
 }
 
 
@@ -141,17 +178,37 @@ playerOne.style.marginTop = '0';
 playerOne.style.border=0;
 // i.style.marginBottom = '3.5px';
 
-
+var random;
 function randomNumber(){
+  DG("upBtn").disabled = false;
+  DG("leftBtn").disabled = false;
+  DG("rightBtn").disabled = false;
+  DG("downBtn").disabled = false;
+  counter = 0;
   var min = 1;
   var max = 7;
-  var random = Math.random() * (+max - +min) + +min;
+  random = Math.random() * (+max - +min) + +min;
   console.log(parseInt(random));
+}
+
+function startGame(){
+  if(parseInt(random) == 6){
+      alert(parseInt(random)+"آوردی :D")
+      startGameNow();
+      tasRandom();
+      alert("خب برای جایزه هم"+parseInt(random)+"آوردی :)")
+  }
+  else {
+    alert(parseInt(random)+"آوردی :(")
+    alert("متاسفانه برای شروع بازی ۶ نیاوردی");
+    randomNumber();
+  }
 }
 
 
 
-function startGame(){
+
+function startGameNow(){
   DG("pr"+p+d).appendChild(playerOne);
 }
 
@@ -249,8 +306,6 @@ class Player {
     }
   }
 }
-
-
 
 function gameBase(map){
     for(var i = 0; i<map.length; i++){
