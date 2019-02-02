@@ -57,7 +57,7 @@ function moveUpEvent(){
   }
   else {
     DG("upBtn").disabled = true;
-    alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+    alert("تعداد حرکات به پایان رسید تاس بریز!")
   }
 }
 
@@ -86,7 +86,7 @@ if (counter < parseInt(random)){
 }
 else {
   DG("rightBtn").disabled = true;
-  alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+  alert("تعداد حرکات به پایان رسید تاس بریز!")
 }
 }
 
@@ -117,7 +117,7 @@ function moveLeftEvent(){
   }
   else {
     DG("leftBtn").disabled = true;
-    alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+    alert("تعداد حرکات به پایان رسید تاس بریز!")
   }
 }
 
@@ -148,7 +148,7 @@ function moveDownEvent(){
   }
   else {
     DG("downBtn").disabled = true;
-    alert("تعداد حرکات به پایان رسید روی تاس کلیک کنید!")
+    alert("تعداد حرکات به پایان رسید تاس بریز!")
   }
 }
 
@@ -196,7 +196,7 @@ function startGame(){
       alert(parseInt(random)+"آوردی :D")
       startGameNow();
       tasRandom();
-      alert("خب برای جایزه هم"+parseInt(random)+"آوردی :)")
+      alert("البته برای جایزه‌ی ۶ قبلی"+parseInt(random)+"آوردی :)")
   }
   else {
     alert(parseInt(random)+"آوردی :(")
