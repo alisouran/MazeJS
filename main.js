@@ -29,7 +29,6 @@ function gameMapInputer(){
 }
 
 var playerCounter = 2;
-
 var counter = 0;
 
 function moveUpEvent(){
@@ -305,9 +304,6 @@ function startGame(){
   }
 }
 
-
-
-
 function startGameNow(){
   if(playerCounter == 1){
     DG("pr"+p+d).appendChild(playerOne);
@@ -320,7 +316,6 @@ function startGameNow(){
 function resetGame(){
   location.reload(true);
 }
-
 
 class Player {
   constructor(map) {
@@ -445,8 +440,6 @@ class Player {
   }
 }
 
-
-
 class Player2 {
   constructor(map) {
     this.map=map;
@@ -569,10 +562,6 @@ class Player2 {
     }
   }
 }
-
-
-
-
 
 function gameBase(map){
     for(var i = 0; i<map.length; i++){
