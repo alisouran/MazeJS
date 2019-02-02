@@ -3,6 +3,7 @@ function DG(str){
 }
 function init(){
   alert("خب به بازی هزارتو خوش اومدی، برای شروع بازی اول تاس شروع بازی رو بریز و بعد برای هر حرکت یه تاس بریز و شانس خودت رو واس خارج شدن از بازی امتحان کن به این هم دقت کن که تمامی کلیک هات روی دکمه ها به منزله یک حرکت محسوب میشه پس حواست باشی که زیاد کلیک نکنی و برخوردت به دیوار هم حتی جزو حرکت هات محسوب میشه")
+  
   randomNumber();
   gameMapInputer();
 }
@@ -29,6 +30,7 @@ function gameMapInputer(){
   xhttp.send();
 }
 
+var playerCounter = 1;
 
 var counter = 0;
 
@@ -47,8 +49,20 @@ function moveUpEvent(){
             map[i][j] = parseInt(map[i][j])
           }
         }
-        var player1 = new Player(map);
-        player1.moveup();
+        if(playerCounter == 1){
+          var player1 = new Player(map);
+          player1.moveup();
+          if (counter == parseInt(random)){
+            playerCounter+=1;
+          }
+        }
+        else if(playerCounter == 2){
+        var player2 = new Player2(map);
+        player2.moveup();
+        if (counter == parseInt(random)){
+          playerCounter-=1;
+        }
+        }
       }
     }
     xhttp.open("GET", "input.txt", true);
@@ -76,8 +90,20 @@ if (counter < parseInt(random)){
           map[i][j] = parseInt(map[i][j])
         }
       }
-      var player1 = new Player(map);
-      player1.moveright();
+      if(playerCounter == 1){
+        var player1 = new Player(map);
+        player1.moveright();
+        if (counter == parseInt(random)){
+          playerCounter+=1;
+        }
+      }
+      else if(playerCounter == 2){
+      var player2 = new Player2(map);
+      player2.moveright();
+      if (counter == parseInt(random)){
+        playerCounter-=1;
+      }
+    }
     }
   }
   xhttp.open("GET", "input.txt", true);
@@ -105,9 +131,20 @@ function moveLeftEvent(){
             map[i][j] = parseInt(map[i][j])
           }
         }
-        var player1 = new Player(map);
-        player1.moveleft();
-        // moveleft(map);
+        if(playerCounter == 1){
+          var player1 = new Player(map);
+          player1.moveleft();
+          if (counter == parseInt(random)){
+            playerCounter+=1;
+          }
+        }
+        else if(playerCounter == 2){
+        var player2 = new Player2(map);
+        player2.moveleft();
+        if (counter == parseInt(random)){
+          playerCounter-=1;
+        }
+        }
 
       }
     }
@@ -136,10 +173,20 @@ function moveDownEvent(){
             map[i][j] = parseInt(map[i][j])
           }
         }
-        var player1 = new Player(map);
-        player1.movedown();
-        // movedown(map);
-
+        if(playerCounter == 1){
+          var player1 = new Player(map);
+          player1.movedown();
+          if (counter == parseInt(random)){
+            playerCounter+=1;
+          }
+        }
+        else if(playerCounter == 2){
+        var player2 = new Player2(map);
+        player2.movedown();
+        if (counter == parseInt(random)){
+          playerCounter-=1;
+        }
+        }
       }
     }
     xhttp.open("GET", "input.txt", true);
@@ -176,6 +223,17 @@ playerOne.style.width = '28px';
 playerOne.style.height = '28px';
 playerOne.style.marginTop = '0';
 playerOne.style.border=0;
+
+var q = 0;
+var s = 0;
+var playerTwo;
+playerTwo = document.createElement("canvas");
+playerTwo.style.display = "inline-block";
+playerTwo.style.backgroundImage = "url('player2.svg')";
+playerTwo.style.width = '28px';
+playerTwo.style.height = '28px';
+playerTwo.style.marginTop = '0';
+playerTwo.style.border=0;
 // i.style.marginBottom = '3.5px';
 
 var random;
@@ -185,6 +243,14 @@ function randomNumber(){
   DG("rightBtn").disabled = false;
   DG("downBtn").disabled = false;
   counter = 0;
+  if(playerCounter == 1){
+    alert("Player 1")
+    playerCounter+=1;
+  }
+  else if(playerCounter == 2){
+    alert("Player 2")
+    playerCounter-=1;
+  }
   var min = 1;
   var max = 7;
   random = Math.random() * (+max - +min) + +min;
@@ -209,7 +275,12 @@ function startGame(){
 
 
 function startGameNow(){
-  DG("pr"+p+d).appendChild(playerOne);
+  if(playerCounter == 1){
+    DG("pr"+p+d).appendChild(playerOne);
+  }
+  else if(playerCounter == 2){
+    DG("pr"+p+d).appendChild(playerTwo);
+  }
 }
 
 function resetGame(){
@@ -306,6 +377,103 @@ class Player {
     }
   }
 }
+
+
+
+class Player2 {
+  constructor(map) {
+    this.map=map;
+  }
+  moveup(){
+    q-=1;
+    if(q<0||s<0){
+      alert("کجا داری میری؟؟!");
+      q+=1;
+      console.log(this.map[q][s]);
+    }
+    else if(this.map[1].length-1 == s){
+      q+=1;
+      alert("آفرین برنده شدی");
+    }
+    else if (this.map[q][s]==1) {
+      console.log(q+","+s);
+      alert("به دیوار رسیدی");
+      q+=1;
+    }
+    else{
+      console.log(q+","+s);
+      DG("pr"+q+s).appendChild(playerTwo);
+    }
+  }
+  moveright(){
+    s+=1;
+    if(q<0||s<0){
+      alert("کجا داری میری؟؟!");
+      s-=1;
+      console.log(q+","+s);
+      console.log(this.map[q][s]);
+    }
+    else if(this.map[1].length-1 == s){
+      s-=1;
+      alert("آفرین برنده شدی");
+    }
+    else if (this.map[q][s]==1) {
+      console.log(q+","+s);
+      alert("به دیوار رسیدی");
+      s-=1;
+    }
+    else{
+      console.log(q+","+s);
+      DG("pr"+q+s).appendChild(playerTwo);
+    }
+  }
+  moveleft(){
+    s-=1;
+    if(q<0||s<0){
+      alert("کجا داری میری؟؟!");
+      s+=1;
+      console.log(q+","+s);
+      console.log(this.map[q][s]);
+    }
+    else if(this.map[1].length-1 == s){
+      s+=1;
+      alert("آفرین برنده شدی");
+    }
+    else if (this.map[q][s]==1) {
+      alert("به دیوار رسیدی");
+      s+=1;
+    }
+    else{
+      console.log(q+","+s);
+      DG("pr"+q+s).appendChild(playerTwo);
+    }
+  }
+  movedown(){
+    q+=1;
+    console.log(q+","+s);
+    if(q<0||s<0){
+      alert("کجا داری میری؟؟!");
+      q-=1;
+      console.log(this.map[q][s]);
+    }
+    else if(this.map[1].length-2 == s){
+      q-=1;
+      alert("آفرین برنده شدی");
+    }
+    else if (this.map[q][s]==1) {
+      alert("به دیوار رسیدی");
+      q-=1;
+    }
+    else{
+      console.log(q+","+s);
+      DG("pr"+q+s).appendChild(playerTwo);
+    }
+  }
+}
+
+
+
+
 
 function gameBase(map){
     for(var i = 0; i<map.length; i++){
